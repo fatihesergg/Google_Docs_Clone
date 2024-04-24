@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Document
+
+<article>
+    <main class="doc_body">
+        <b><p class="doc_title">@Model.Title <a asp-controller="Document" asp-action="Edit" asp-route-id="@Model.DocumentID"><img id="edit_icon" src="/img/edit.png" width="30" height="30" /></a></p></b>
+                            
+            <br />
+            <div class="doc_text">
+                @Html.Raw(Model.Content)
+            </div>
+    </main>
+</article>

@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Create New - Google Docs Clone";
+
+}
+@model Document
+
+
+<form asp-controller="Document" asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="validations">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Title</label>
+        <input type="text" asp-for="Title" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Content" class="form-label">Content</label>
+        <input id="content" asp-for="Content" type="hidden"/>
+        <div id="editor"></div
+    </div>
+    <button id="saveBtn" type="submit" class="btn text-dark mt-3">Save</button>
+</form>
+
+@section Scripts {
+    <script>
+        const quill = new Quill('#editor', {
+        theme: 'snow'
+        });
+        quill.on('text-change', function () {
+            const text = quill.getSemanticHTML();
+            document.getElementById("content").value = text.toString();
+        });
+    </script>
+}

@@ -1,0 +1,200 @@
+:root {
+    --background: #151718;
+    --foreground: #181a1b;
+    --box: #E5E5E5;
+    --text-dark: #000000;
+    --text-white: #E2E2E2;
+}
+
+html {
+  font-size: 14px;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.flex-container a{  
+    text-decoration: none;
+    color: var(--text-white);
+    opacity: 1;
+}
+
+.flex-container a:hover {
+    animation-name:bounce;
+     animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-50px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+#search_term{
+    font-size:20px;
+    text-align:center;
+    color:var(--text-white);
+    margin: 50px 0px 10px 0px;
+}
+
+.flex-container {
+    display: flex;
+    align-self: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px 0px;
+}
+
+.inner {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.inner p {
+    color: var(--text-white);
+    font-family: "Montserrat";
+    font-weight: 500;
+}
+
+.outer {
+    background-color: var(--foreground);
+    margin: 40px 30px;
+    width: 200px;
+    height: 200px;
+}
+
+outer:hover {
+    box-shadow: 5px 5px 20px #B0B0B0;
+}
+outer:hover .inner p {
+    color:var(--text-white);
+}
+
+.create_new {
+    padding: 100px 70px;
+    margin: 20px 30px;
+    background-color: var(--foreground);
+}
+
+
+#plus_icon .image {
+    width: 50px;
+    heigth: 50px;
+    content: url("/img/plus_light.png");
+    opacity: 1;
+}
+
+
+.doc_body {
+    display: flex;
+    justify-items: center;
+    flex-flow: row wrap;
+    justify-content:center;
+}
+
+/* Document Body */
+.doc_body p,h1,h2,h3,h4,h5,h6,li {
+    color: var(--text-white);
+}
+
+.doc_title {
+    margin:50px 0px;
+    font-size: 40px;
+}
+
+.doc_text {
+    margin: 5% 20%
+}
+
+.doc_text img {
+    max-width: 100%;
+}
+
+.edit_icon {
+    display:inline;
+    opacity:0.3;
+}
+
+nav {
+    background-color: var(--foreground);
+}
+
+/* Universal font */
+nav, .dflex button, .nav-link, form label, form input, .not_found h4, p {
+    font-family: "Roboto";
+}
+
+
+#render_body {
+    color: #323232;
+}
+
+.d-flex button {
+    background-color: #FFFFFF;
+}
+
+
+
+
+/* Create Page */
+
+form div {
+    padding: 30px 120px;
+}
+form .validations {
+    text-decoration-color:red;
+    padding: 30px 140px 10px 140px;
+}
+form #validation {
+    display:block;
+    margin:20px 0px;
+}
+
+form label {
+    color: var(--text-white);
+}
+
+#saveBtn {
+    background-color: #FFFFFF;
+}
+
+
+
+/* Not Found */
+.not_found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.not_found h4{
+    font-size:40px;
+}
+
+.not_found p {
+    font-size:25px;
+}
+

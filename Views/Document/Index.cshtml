@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Google Docs Clone";
+}
+@model List<Document>
+    <div class="flex-container">
+    @foreach(var doc in Model)
+    {
+            <a asp-controller="Document" asp-action="Details" asp-route-id="@doc.DocumentID">
+            <div class="outer">
+                <div class="inner">
+                    <p>@doc.Title</p>
+                </div>
+            </div>
+        </a>
+    }
+
+                <a asp-controller="Document" asp-action="Create" id="plus_icon">
+        <div class="create_new">
+                    <div class="image">
+
+                    </div>
+        </div>
+                </a>
+    </div>
+

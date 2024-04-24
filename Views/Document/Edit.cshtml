@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Document
+
+<form asp-controller="Document" asp-action="Edit" method="post">
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Title</label>
+        <input type="text" asp-for="Title" class="form-control"></input
+    </div>
+    <div class="mb-3">
+        <label asp-for="Content" class="form-label">Content</label>
+        <input id="content" asp-for="Content" type="hidden"/>
+        <div id="editor"></div
+    </div>
+    <button id="saveBtn" type="submit" class="btn btn-outline-success">Save</button>
+</form>
+
+@section Scripts {
+    <script>
+        const quill = new Quill('#editor', {
+        theme: 'snow'
+        });
+        quill.clipboard.dangerouslyPasteHTML(document.getElementById("content").value);
+      document.getElementById("saveBtn").onclick = function () {
+            const text = quill.getSemanticHTML();
+            document.getElementById("content").value = text.toString();
+        }  
+    </script>
+}
