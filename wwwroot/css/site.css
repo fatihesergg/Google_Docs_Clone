@@ -147,9 +147,10 @@ nav, .dflex button, .nav-link, form label, form input, .not_found h4, p {
     font-family: "Roboto";
 }
 
-
+/* Render Body */
 #render_body {
     color: #323232;
+    padding: 50px 130px;
 }
 
 .d-flex button {
@@ -161,16 +162,16 @@ nav, .dflex button, .nav-link, form label, form input, .not_found h4, p {
 
 /* Create Page */
 
-form div {
-    padding: 30px 120px;
-}
 form .validations {
     text-decoration-color:red;
-    padding: 30px 140px 10px 140px;
 }
 form #validation {
     display:block;
-    margin:20px 0px;
+    margin:30px 0px;
+}
+
+form .mb-3 {
+    padding:10px 0px;
 }
 
 form label {
