@@ -1,4 +1,5 @@
-﻿using Google_Docs_Clone.Models;
+﻿using Ganss.Xss;
+using Google_Docs_Clone.Models;
 using Google_Docs_Clone.Models.Repository;
 using Google_Docs_Clone.Models.Validations;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,12 @@ namespace Google_Docs_Clone.Controllers
     public class DocumentController : Controller
     {
         private readonly IDocumentRepository _repository;
+        private readonly IHtmlSanitizer _sanitizer;
 
-        public DocumentController(IDocumentRepository repository)
+        public DocumentController(IDocumentRepository repository, IHtmlSanitizer sanitizer)
         {
             _repository = repository;
+            _sanitizer = sanitizer;
         }
 
         [HttpGet]
@@ -32,19 +35,24 @@ namespace Google_Docs_Clone.Controllers
         public IActionResult Create(Document document)
         {
             DocumentValidator validations = new DocumentValidator();
-            var result =  validations.Validate(document);
+            var result = validations.Validate(document);
             if (!result.IsValid)
             {
                 foreach (var failure in result.Errors)
                 {
                     ModelState.AddModelError("", failure.ErrorMessage);
-                    
+
                 }
                 return View(document);
             }
+            else
+            {
+                var sanitized = _sanitizer.Sanitize(document.Content);
+                document.Content = sanitized;
+            }
             _repository.Add(document);
             _repository.SaveChanges();
-            return RedirectToAction("Details",new {id=document.DocumentID});
+            return RedirectToAction("Details", new { id = document.DocumentID });
         }
 
         [HttpGet]
@@ -71,19 +79,19 @@ namespace Google_Docs_Clone.Controllers
             return View(document);
         }
 
-        //[HttpPost]
-        //public IActionResult Edit(Document document)
-        //{
-        //    _repository.Update(document);
-        //    _repository.SaveChanges();
-        //    return RedirectToAction("Details", new {id=document.DocumentID});
-        //}
+        [HttpPost]
+        public IActionResult Edit(Document document)
+        {
+            _repository.Update(document);
+            _repository.SaveChanges();
+            return RedirectToAction("Details", new { id = document.DocumentID });
+        }
 
         [HttpPost]
         public IActionResult Search(string query)
         {
             var result = _repository.Search(query);
-            ViewData["query"] = query; 
+            ViewData["query"] = query;
             return View(result);
         }
     }
